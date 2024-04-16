@@ -1,1 +1,1 @@
-# odin-calculator
+Final project of The Odin Project - Fundamentals geared at showcasing grasp of Javascript as well as CSS and HTML manipulation.
