@@ -1,13 +1,3 @@
-function clearDisplay() {
-    display.textContent = 0;
-}
-
-function clearVariables() {
-    numberA = '';
-    numberB = '';
-    operator = '';
-}
-
 const mathFunctions = {
     add: function(a, b) {return a + b},
     subtract: function(a, b) {return a - b},
@@ -43,10 +33,21 @@ const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
         display.textContent += button.textContent;
-        if (button.id === "add") {operator = mathFunctions.add};
-        if (button.id === "subtract") {operator = mathFunctions.subtract};
-        if (button.id === "multiply") {operator = mathFunctions.multiply};
-        if (button.id === "divide") {operator = mathFunctions.divide};
+        if (operator === '') {
+            if (button.id === "add") {operator = mathFunctions.add};
+            if (button.id === "subtract") {operator = mathFunctions.subtract};
+            if (button.id === "multiply") {operator = mathFunctions.multiply};
+            if (button.id === "divide") {operator = mathFunctions.divide};
+        } else {
+            display.textContent = operator(+numberA, +numberB) + button.textContent;
+            numberA = operator(+numberA, +numberB);
+            numberB = 0;
+            if (button.id === "add") {operator = mathFunctions.add};
+            if (button.id === "subtract") {operator = mathFunctions.subtract};
+            if (button.id === "multiply") {operator = mathFunctions.multiply};
+            if (button.id === "divide") {operator = mathFunctions.divide};
+        }
+
     })
 })
 
@@ -59,8 +60,10 @@ enterButton.addEventListener("click", () => {
 
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => {
-    clearDisplay();
-    clearVariables();
+    display.textContent = 0;
+    numberA = '';
+    numberB = '';
+    operator = '';
 })
 
 const allButtons = document.querySelectorAll("button");
