@@ -21,33 +21,37 @@ const divideByZeroMessage = "nope";
 let numberA = '';
 let numberB = '';
 let operator = '';
+const maxInts = 11;
 
 
 
 let display = document.querySelector("#display")
 
 const numberButtons = document.querySelectorAll(".number");
-const decimalButton = document.querySelector("#decimal");
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         // create or add to first number, given operation hasn't been decided
-        if (operator === '') {
-            // numberA hasn't been crafted yet, initialize it to first number selection
-            // removing holder '0'.
-            if (display.textContent === '0' || display.textContent == divideByZeroMessage) {
-                numberA = button.textContent;
-                display.textContent = button.textContent;
-            // concat additional numbers to numberA
+        if (display.textContent.length <= maxInts) {
+            if (operator === '') {
+                // numberA hasn't been crafted yet, initialize it to first number selection
+                // removing holder '0'.
+                if (display.textContent === '0' || display.textContent == divideByZeroMessage) {
+                    numberA = button.textContent;
+                    display.textContent = button.textContent;
+                // concat additional numbers to numberA
+                } else {
+                    numberA += button.textContent;
+                    display.textContent += button.textContent;
+                }
             } else {
-                numberA += button.textContent;
-                display.textContent += button.textContent;
+                numberB += button.textContent;
+                display.textContent += button.textContent
             }
-        } else {
-            numberB += button.textContent;
-            display.textContent += button.textContent
         }
     })
 })
+
+const decimalButton = document.querySelector("#decimal");
 
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => {
