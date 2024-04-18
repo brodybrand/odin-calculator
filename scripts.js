@@ -5,10 +5,6 @@ function clear() {
     display.textContent = '0'
 }
 
-function operate() {
-
-}
-
 const mathFunctions = {
     add: function(a, b) {return a + b},
     subtract: function(a, b) {return a - b},
@@ -23,15 +19,13 @@ let numberB = '';
 let operator = '';
 const maxInts = 11;
 
-
-
 let display = document.querySelector("#display")
 
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // create or add to first number, given operation hasn't been decided
         if (display.textContent.length <= maxInts) {
+            // create or add to first number, given operation hasn't been decided
             if (operator === '') {
                 // numberA hasn't been crafted yet, initialize it to first number selection
                 // removing holder '0'.
@@ -50,8 +44,6 @@ numberButtons.forEach(button => {
         }
     })
 })
-
-const decimalButton = document.querySelector("#decimal");
 
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => {
@@ -122,3 +114,4 @@ allButtons.forEach(button => {
         button.style.fontSize = 'small';
     })
 })
+
